@@ -1,16 +1,16 @@
 import environment from "../utils/environment";
-import http from '../utils/http'
+import http from "../utils/http";
+import CryptoJS from "crypto-js";
 
 const getProfiles = async () => {
   try {
     const response = await http.get(`${environment.resolveApi()}/api/profiles`);
 
-
     if (!response.data) {
       console.error(`Error fetching data: ${response.statusText}`);
     }
 
-    const profiles = await response.data
+    const profiles = await response.data;
 
     return profiles;
   } catch (error) {
@@ -19,12 +19,15 @@ const getProfiles = async () => {
 };
 
 const updateData = async (data) => {
+  // hash data before sending to API
+  const hash = CryptoJS.SHA256(JSON.stringify(data)).toString();
+  const payload = { data, hash };
+
   try {
-
-
-
-    const response = await http.post(`${environment.resolveApi()}/api/profiles/update`, data);
-
+    const response = await http.post(
+      `${environment.resolveApi()}/api/profiles/update`,
+      payload
+    );
 
     if (!response) {
       console.error(`Error updating data: ${response.statusText}`);

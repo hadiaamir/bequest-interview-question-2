@@ -14,7 +14,6 @@ function App() {
   const [editingUserId, setEditingUserId] = useState(null);
   const [data, setData] = useState([]);
 
-
   const getProfiles = async () => {
     const profiles = await ProfileService.getProfiles();
     console.log("profiles", profiles);
@@ -22,20 +21,14 @@ function App() {
     setData(profiles);
   };
 
-  const verifyData = async () => {
-    throw new Error("Not implemented");
-  };
-
   const handleUpdateUser = async () => {
     try {
-
-      console.log('newUserData', newUserData)
+      console.log("newUserData", newUserData);
       // Call your update function here
       await ProfileService.updateData(newUserData); // Adjust this as needed
       // Refresh data after update
       const updatedProfiles = await ProfileService.getProfiles();
       setData(updatedProfiles);
-
     } catch (error) {
       console.error("Failed to update user:", error);
     }
@@ -43,11 +36,14 @@ function App() {
   };
 
   const handleEditClick = (user) => {
-    console.log('user', user)
-
+    console.log("user", user);
 
     setEditingUserId(user._id); // Set the user ID of the user being edited
-    setNewUserData({ id: user._id, name: user.name, license_number: user.license_number }); // Pre-fill the input fields
+    setNewUserData({
+      id: user._id,
+      name: user.name,
+      license_number: user.license_number,
+    }); // Pre-fill the input fields
   };
 
   useEffect(() => {
@@ -63,12 +59,8 @@ function App() {
 
           return (
             <div className={AppStyles["card"]} key={i}>
-
-
-
               <span onClick={() => handleEditClick(user)}>
                 <strong>Name: </strong>
-
 
                 {isEditing ? (
                   <input
@@ -82,9 +74,6 @@ function App() {
                 ) : (
                   user.name
                 )}
-
-
-
               </span>
               <span onClick={() => handleEditClick(user)}>
                 <strong>License: </strong>
@@ -104,22 +93,10 @@ function App() {
                   user.license_number
                 )}
               </span>
-              {isEditing && (
-                <button onClick={handleUpdateUser}>
-                  Update
-                </button>
-              )}
+              {isEditing && <button onClick={handleUpdateUser}>Update</button>}
             </div>
           );
         })}
-
-
-      {/* <div className={AppStyles["footer"]}>
-
-        <button className={AppStyles["footer__btn"]} onClick={verifyData}>
-          Verify Data
-        </button>
-      </div> */}
     </div>
   );
 }
