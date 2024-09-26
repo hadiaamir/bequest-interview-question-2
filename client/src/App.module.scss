@@ -1,0 +1,27 @@
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: absolute;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 30px;
+}
+
+.input {
+    font-size: 20px;
+}
+
+.footer{
+    display: flex;
+    gap: 10px;
+
+    &__btn {
+        font-size: 20px;
+    }
+}
+
