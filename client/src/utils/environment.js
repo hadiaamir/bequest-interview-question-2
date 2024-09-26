@@ -1,7 +1,7 @@
 const currentEnvironment = "development";
 
 const env = {
-  development: "http://localhost:8080/",
+  development: "http://localhost:8080",
 };
 
 const ConfigurationService = {

@@ -1,15 +1,24 @@
 
 .container {
-    width: 100vw;
-    height: 100vh;
+   display: flex;
+   flex-flow: column;
+   font-family: Arial, Helvetica, sans-serif;
+   font-display: swap;
+   gap: 1rem;
+   margin: 10%;
+}
+
+.title{
+    font-size: 32px;
+    font-weight: 700;
+   
+}
+.card {
     display: flex;
-    position: absolute;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 20px;
-    font-size: 30px;
+    flex-flow: column;
+    border: 1px solid grey;
+    border-radius: 8px;
+    padding: 1rem;
 }
 
 .input {
